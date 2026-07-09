@@ -1,0 +1,25 @@
+# DQN stopping-policy training configuration.
+
+seed: 42
+episodes: 10000
+batch_size: 128
+replay_capacity: 50000
+target_update_every: 250
+epsilon_start: 1.0
+epsilon_min: 0.05
+epsilon_decay: 0.999
+learning_rate: 0.001
+hidden_dim: 64
+
+# Environment dynamics the DQN was trained on (see src/rl/env.py).
+# NOTE: the DQN is trained on ONE fixed contract's dynamics, then evaluated
+# out-of-sample on 5000 episodes. When re-parameterized across the shared
+# evaluation grid in src/evaluation/comparison.py, treat DQN values as an
+# indication of generalization, not a like-for-like retraining per contract.
+env:
+  S0: 100.0
+  K: 100.0
+  T: 1.0
+  r: 0.05
+  sigma: 0.20
+  steps: 50
